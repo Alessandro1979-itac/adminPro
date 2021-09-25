@@ -7,6 +7,8 @@ import { ChartsModule } from 'ng2-charts';
 import { IncrementadorComponent } from './incrementador/incrementador.component';
 import { DonaComponent } from './dona/dona.component';
 
+
+
 @NgModule({
   declarations: [
     IncrementadorComponent,
