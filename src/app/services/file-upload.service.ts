@@ -16,10 +16,10 @@ export class FileUploadService {
     id: string
   ) {
     try {
+
       const url = `${base_url}/upload/${tipo}/${id}`;
       const formData = new FormData();
       formData.append('imagen', archivo);
-
       const resp = await fetch(url, {
         method: 'PUT',
         headers: {
@@ -27,9 +27,7 @@ export class FileUploadService {
         },
         body: formData
       });
-
       const data = await resp.json();
-
       if (data.ok) {
         return data.nombreArchivo;
       } else {
