@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
 
   public formSubmitted = false;
   public auth2: any;
-
   public loginForm = this.fb.group({
     email: [localStorage.getItem('email') || '', [Validators.required, Validators.email]],
     password: ['', Validators.required],
@@ -26,7 +25,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
-    private ngZone: NgZone) { }
+    private ngZone: NgZone
+  ) { }
 
   ngOnInit(): void {
     this.renderButton();
@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
   }
 
   renderButton() {
-
     gapi.signin2.render('my-signin2', {
       'scope': 'profile email',
       'width': 240,
@@ -85,4 +84,5 @@ export class LoginComponent implements OnInit {
         alert(JSON.stringify(error, undefined, 2));
       });
   }
+
 }

@@ -20,7 +20,6 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   public totalUsuarios: number = 0;
   public usuarios: Usuario[] = [];
   public usuariosTemp: Usuario[] = [];
-
   public imgSubs: Subscription;
   public desde: number = 0;
   public cargando: boolean = true;
@@ -28,7 +27,8 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   constructor(
     private usuarioService: UsuarioService,
     private busquedasService: BusquedasService,
-    private modalImagenService: ModalImagenService) { }
+    private modalImagenService: ModalImagenService
+  ) { }
 
   ngOnDestroy(): void {
     this.imgSubs.unsubscribe();
@@ -38,7 +38,8 @@ export class UsuariosComponent implements OnInit, OnDestroy {
 
     this.cargarUsuarios();
     this.imgSubs = this.modalImagenService.nuevaImagen
-      .pipe(delay(100)).subscribe(img => this.cargarUsuarios());
+      .pipe(delay(100))
+      .subscribe(img => this.cargarUsuarios());
   }
 
   cargarUsuarios() {
@@ -53,8 +54,8 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   }
 
   cambiarPagina(valor: number) {
-
     this.desde += valor;
+
     if (this.desde < 0) {
       this.desde = 0;
     } else if (this.desde >= this.totalUsuarios) {
@@ -69,7 +70,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
       return this.usuarios = this.usuariosTemp;
     }
     this.busquedasService.buscar('usuarios', termino)
-      .subscribe(resp => {
+      .subscribe((resp: Usuario[]) => {
         this.usuarios = resp;
       });
   }
@@ -109,6 +110,8 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   }
 
   abrirModal(usuario: Usuario) {
+
     this.modalImagenService.abrirModal('usuarios', usuario.uid, usuario.img);
   }
+
 }

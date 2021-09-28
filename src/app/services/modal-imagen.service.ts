@@ -27,7 +27,6 @@ export class ModalImagenService {
     this._ocultarModal = false;
     this.tipo = tipo;
     this.id = id;
-    // localhost:3000/api/upload/medicos/no-img
     if (img.includes('https')) {
       this.img = img;
     } else {
@@ -38,5 +37,6 @@ export class ModalImagenService {
   cerrarModal() {
     this._ocultarModal = true;
   }
+
   constructor() { }
 }

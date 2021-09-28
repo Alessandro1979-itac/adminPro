@@ -12,11 +12,14 @@ export class HeaderComponent {
 
   public usuario: Usuario;
 
-  constructor(private usuarioService: UsuarioService) {
+  constructor(
+    private usuarioService: UsuarioService
+  ) {
     this.usuario = usuarioService.usuario;
   }
 
   logout() {
     this.usuarioService.logout();
   }
+
 }

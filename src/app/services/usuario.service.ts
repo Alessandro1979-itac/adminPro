@@ -54,7 +54,7 @@ export class UsuarioService {
     return new Promise(resolve => {
       gapi.load('auth2', () => {
         this.auth2 = gapi.auth2.init({
-          client_id: '256093215577-cc3b71u706b10i4bkrbk4q3j5utrva7b.apps.googleusercontent.com',
+          client_id: '1045072534136-oqkjcjvo449uls0bttgvl3aejelh22f5.apps.googleusercontent.com',
           cookiepolicy: 'single_host_origin',
         });
         resolve();
@@ -63,9 +63,10 @@ export class UsuarioService {
   }
 
   logout() {
-
     localStorage.removeItem('token');
+
     this.auth2.signOut().then(() => {
+
       this.ngZone.run(() => {
         this.router.navigateByUrl('/login');
       })
@@ -105,6 +106,7 @@ export class UsuarioService {
       ...data,
       role: this.usuario.role
     }
+
     return this.http.put(`${base_url}/usuarios/${this.uid}`, data, this.headers);
   }
 
@@ -155,4 +157,5 @@ export class UsuarioService {
 
     return this.http.put(`${base_url}/usuarios/${usuario.uid}`, usuario, this.headers);
   }
+
 }

@@ -8,13 +8,14 @@ import { tap } from 'rxjs/operators';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private usuarioService: UsuarioService,
-    private router: Router) { }
+  constructor(
+    private usuarioService: UsuarioService,
+    private router: Router
+  ) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ) {
+    state: RouterStateSnapshot) {
 
     return this.usuarioService.validarToken()
       .pipe(
@@ -25,4 +26,5 @@ export class AuthGuard implements CanActivate {
         })
       );
   }
+
 }

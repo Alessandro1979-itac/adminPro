@@ -15,12 +15,15 @@ export class SidebarComponent implements OnInit {
   public usuario: Usuario;
   public menuItems: any[];
 
-  constructor(private sidebarService: SidebarService,
-    private usuarioService: UsuarioService) {
+  constructor(
+    private sidebarService: SidebarService,
+    private usuarioService: UsuarioService
+  ) {
     this.menuItems = sidebarService.menu;
     this.usuario = usuarioService.usuario;
   }
 
   ngOnInit(): void {
   }
+
 }

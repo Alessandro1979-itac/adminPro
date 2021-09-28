@@ -14,17 +14,14 @@ export class BreadcrumbsComponent implements OnDestroy {
   public titulo: string;
   public tituloSubs$: Subscription;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute
-  ) {
+  constructor(private router: Router, private route: ActivatedRoute) {
+
     this.tituloSubs$ = this.getArgumentosRuta()
       .subscribe(({ titulo }) => {
         this.titulo = titulo;
         document.title = `AdminPro - ${titulo}`;
       });
   }
-
   ngOnDestroy(): void {
     this.tituloSubs$.unsubscribe();
   }
@@ -38,4 +35,5 @@ export class BreadcrumbsComponent implements OnDestroy {
         map((event: ActivationEnd) => event.snapshot.data),
       );
   }
+
 }

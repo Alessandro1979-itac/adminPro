@@ -41,4 +41,5 @@ export class IncrementadorComponent implements OnInit {
     }
     this.valorSalida.emit(this.progreso);
   }
+
 }

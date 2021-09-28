@@ -17,6 +17,7 @@ export class SidebarService {
         { titulo: 'ProgressBar', url: 'progress' },
       ]
     },
+
     {
       titulo: 'Mantenimientos',
       icono: 'mdi mdi-folder-lock-open',

@@ -27,7 +27,8 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
-    private router: Router) { }
+    private router: Router
+  ) { }
 
   crearUsuario() {
 
@@ -84,4 +85,5 @@ export class RegisterComponent {
       }
     }
   }
+
 }

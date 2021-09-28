@@ -20,11 +20,10 @@ export class PerfilComponent implements OnInit {
   public imagenSubir: File;
   public imgTemp: any = null;
 
-  constructor(
-    private fb: FormBuilder,
+  constructor(private fb: FormBuilder,
     private usuarioService: UsuarioService,
-    private fileUploadService: FileUploadService
-  ) {
+    private fileUploadService: FileUploadService) {
+
     this.usuario = usuarioService.usuario;
   }
 
@@ -55,8 +54,10 @@ export class PerfilComponent implements OnInit {
     if (!file) {
       return this.imgTemp = null;
     }
+
     const reader = new FileReader();
     reader.readAsDataURL(file);
+
     reader.onloadend = () => {
       this.imgTemp = reader.result;
     }
@@ -74,4 +75,5 @@ export class PerfilComponent implements OnInit {
         Swal.fire('Error', 'No se pudo subir la imagen', 'error');
       });
   }
+
 }
