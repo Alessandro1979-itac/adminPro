@@ -12,9 +12,7 @@ const base_url = environment.base_url;
 })
 export class HospitalService {
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
   get token(): string {
     return localStorage.getItem('token') || '';

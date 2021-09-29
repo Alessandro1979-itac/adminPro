@@ -78,7 +78,6 @@ export class HospitalesComponent implements OnInit, OnDestroy {
   }
 
   async abrirSweetAlert() {
-
     const { value = '' } = await Swal.fire<string>({
       title: 'Crear hospital',
       text: 'Ingrese el nombre del nuevo hospital',
@@ -95,8 +94,8 @@ export class HospitalesComponent implements OnInit, OnDestroy {
   }
 
   abrirModal(hospital: Hospital) {
-
     this.modalImagenService.abrirModal('hospitales', hospital._id, hospital.img);
+
   }
 
 }

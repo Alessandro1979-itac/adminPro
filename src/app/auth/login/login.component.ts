@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 
   public formSubmitted = false;
   public auth2: any;
+
   public loginForm = this.fb.group({
     email: [localStorage.getItem('email') || '', [Validators.required, Validators.email]],
     password: ['', Validators.required],
@@ -31,6 +32,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.renderButton();
   }
+
 
   login() {
 

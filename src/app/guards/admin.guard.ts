@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { UsuarioService } from '../services/usuario.service';
-import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
 
   constructor(
     private usuarioService: UsuarioService,
@@ -16,16 +15,14 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ) {
+  ): boolean {
 
-    return this.usuarioService.validarToken()
-      .pipe(
-        tap(estaAutenticado => {
-          if (!estaAutenticado) {
-            this.router.navigateByUrl('/login');
-          }
-        })
-      );
+    if (this.usuarioService.role === 'ADMIN_ROLE') {
+      return true;
+    } else {
+      this.router.navigateByUrl('/dashboard');
+      return false;
+    }
   }
 
 }

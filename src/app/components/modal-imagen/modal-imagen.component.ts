@@ -20,8 +20,7 @@ export class ModalImagenComponent implements OnInit {
     public fileUploadService: FileUploadService
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   cerrarModal() {
     this.imgTemp = null;
@@ -29,13 +28,15 @@ export class ModalImagenComponent implements OnInit {
   }
 
   cambiarImagen(file: File) {
-    this.imagenSubir = file;
 
+    this.imagenSubir = file;
     if (!file) {
       return this.imgTemp = null;
     }
+
     const reader = new FileReader();
     reader.readAsDataURL(file);
+
     reader.onloadend = () => {
       this.imgTemp = reader.result;
     }

@@ -14,9 +14,7 @@ const base_url = environment.base_url;
 })
 export class BusquedasService {
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
   get token(): string {
     return localStorage.getItem('token') || '';
@@ -43,6 +41,12 @@ export class BusquedasService {
 
   private transformarMedicos(resultados: any[]): Medico[] {
     return resultados;
+  }
+
+  busquedaGlobal(termino: string) {
+
+    const url = `${base_url}/todo/${termino}`;
+    return this.http.get(url, this.headers);
   }
 
   buscar(

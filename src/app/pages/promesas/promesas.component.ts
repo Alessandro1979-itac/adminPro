@@ -23,7 +23,6 @@ export class PromesasComponent implements OnInit {
       fetch('https://reqres.in/api/users')
         .then(resp => resp.json())
         .then(body => resolve(body.data));
-
     });
   }
 

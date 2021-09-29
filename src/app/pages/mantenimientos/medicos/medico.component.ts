@@ -20,6 +20,7 @@ export class MedicoComponent implements OnInit {
 
   public medicoForm: FormGroup;
   public hospitales: Hospital[] = [];
+
   public medicoSeleccionado: Medico;
   public hospitalSeleccionado: Hospital;
 
@@ -41,6 +42,7 @@ export class MedicoComponent implements OnInit {
     });
 
     this.cargarHospitales();
+
     this.medicoForm.get('hospital').valueChanges
       .subscribe(hospitalId => {
         this.hospitalSeleccionado = this.hospitales.find(h => h._id === hospitalId);
@@ -62,6 +64,7 @@ export class MedicoComponent implements OnInit {
           this.medicoSeleccionado = medico;
           this.medicoForm.setValue({ nombre, hospital: _id });
         });
+
   }
 
   cargarHospitales() {
@@ -75,7 +78,6 @@ export class MedicoComponent implements OnInit {
   guardarMedico() {
 
     const { nombre } = this.medicoForm.value;
-
     if (this.medicoSeleccionado) {
       // actualizar
       const data = {

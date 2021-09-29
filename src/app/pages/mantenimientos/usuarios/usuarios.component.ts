@@ -20,6 +20,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   public totalUsuarios: number = 0;
   public usuarios: Usuario[] = [];
   public usuariosTemp: Usuario[] = [];
+
   public imgSubs: Subscription;
   public desde: number = 0;
   public cargando: boolean = true;
@@ -54,8 +55,8 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   }
 
   cambiarPagina(valor: number) {
-    this.desde += valor;
 
+    this.desde += valor;
     if (this.desde < 0) {
       this.desde = 0;
     } else if (this.desde >= this.totalUsuarios) {
@@ -99,6 +100,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
           });
       }
     });
+
   }
 
   cambiarRole(usuario: Usuario) {
@@ -110,7 +112,6 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   }
 
   abrirModal(usuario: Usuario) {
-
     this.modalImagenService.abrirModal('usuarios', usuario.uid, usuario.img);
   }
 

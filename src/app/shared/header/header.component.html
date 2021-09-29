@@ -1,6 +1,3 @@
-<!-- ============================================================== -->
-<!-- Topbar header - style you can find in pages.scss -->
-<!-- ============================================================== -->
 <header class="topbar">
   <nav class="navbar top-navbar navbar-expand-md navbar-light">
     <!-- ============================================================== -->
@@ -48,9 +45,9 @@
         <!-- ============================================================== -->
         <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark"
             href="javascript:void(0)"><i class="ti-search"></i></a>
-          <form class="app-search">
-            <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i
-                class="ti-close"></i></a>
+          <form class="app-search" (submit)="buscar( txtTermino.value )">
+            <input type="text" class="form-control" placeholder="Buscar médico, hospital o usuario" #txtTermino>
+            <a class="srh-btn"><i class="ti-close"></i></a>
           </form>
         </li>
         <!-- ============================================================== -->
@@ -109,12 +106,6 @@
             </ul>
           </div>
         </li>
-        <!-- ============================================================== -->
-        <!-- End Comment -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Messages -->
-        <!-- ============================================================== -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-email"></i>
@@ -172,13 +163,6 @@
             </ul>
           </div>
         </li>
-        <!-- ============================================================== -->
-        <!-- End Messages -->
-        <!-- ============================================================== -->
-
-        <!-- ============================================================== -->
-        <!-- Language -->
-        <!-- ============================================================== -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-us"></i></a>
@@ -230,6 +214,3 @@
     </div>
   </nav>
 </header>
-<!-- ============================================================== -->
-<!-- End Topbar header -->
-<!-- ============================================================== -->

@@ -12,9 +12,9 @@ export class RxjsComponent implements OnDestroy {
 
   public intervalSubs: Subscription;
 
-  constructor() {
 
-    this.intervalSubs = this.retornaIntervalo().subscribe(console.log);
+  constructor() {
+    this.intervalSubs = this.retornaIntervalo().subscribe(console.log)
   }
 
   ngOnDestroy(): void {

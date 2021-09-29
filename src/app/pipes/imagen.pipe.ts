@@ -19,6 +19,7 @@ export class ImagenPipe implements PipeTransform {
     } else {
       return `${base_url}/upload/usuarios/no-image`;
     }
+
   }
 
 }
