@@ -3,7 +3,6 @@ import { environment } from '../../environments/environment';
 const base_url = environment.base_url;
 
 export class Usuario {
-
   constructor(
     public nombre: string,
     public email: string,
@@ -11,11 +10,10 @@ export class Usuario {
     public img?: string,
     public google?: boolean,
     public role?: 'ADMIN_ROLE' | 'USER_ROLE',
-    public uid?: string,
-  ) { }
+    public uid?: string
+  ) {}
 
   get imagenUrl() {
-
     if (!this.img) {
       return `${base_url}/upload/usuarios/no-image`;
     } else if (this.img.includes('https')) {
@@ -26,6 +24,4 @@ export class Usuario {
       return `${base_url}/upload/usuarios/no-image`;
     }
   }
-  
 }
-

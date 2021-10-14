@@ -1,13 +1,16 @@
 <div class="row animated fadeIn fast">
+
   <div class="col-4">
     <div class="card">
       <div class="card-body">
         <h3>Usuarios</h3>
+
         <div class="alert alert-info animated fadeIn fast" *ngIf="usuarios.length === 0">
           <p class="mb-0">
             No hay usuario con ese término
           </p>
         </div>
+
         <div class="table-responsive" *ngIf="usuarios.length > 0">
           <table class="table">
             <thead>
@@ -26,18 +29,23 @@
             </tbody>
           </table>
         </div>
+
+
       </div>
     </div>
   </div>
+
   <div class="col-4">
     <div class="card">
       <div class="card-body">
         <h3>Hospitales</h3>
+
         <div class="alert alert-info animated fadeIn fast" *ngIf="hospitales.length === 0">
           <p class="mb-0">
             No hay hospitales con ese término
           </p>
         </div>
+
         <div class="table-responsive" *ngIf="hospitales.length > 0">
           <table class="table">
             <thead>
@@ -56,18 +64,23 @@
             </tbody>
           </table>
         </div>
+
+
       </div>
     </div>
   </div>
+
   <div class="col-4">
     <div class="card">
       <div class="card-body">
         <h3>Médicos</h3>
+
         <div class="alert alert-info animated fadeIn fast" *ngIf="medicos.length === 0">
           <p class="mb-0">
             No hay médicos con ese término
           </p>
         </div>
+
         <div class="table-responsive" *ngIf="medicos.length > 0">
           <table class="table">
             <thead>

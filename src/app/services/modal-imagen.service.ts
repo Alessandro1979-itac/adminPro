@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 const base_url = environment.base_url;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ModalImagenService {
 
@@ -12,7 +12,6 @@ export class ModalImagenService {
   public tipo: 'usuarios' | 'medicos' | 'hospitales';
   public id: string;
   public img: string;
-
   public nuevaImagen: EventEmitter<string> = new EventEmitter<string>();
 
   get ocultarModal() {
@@ -38,5 +37,5 @@ export class ModalImagenService {
     this._ocultarModal = true;
   }
 
-  constructor() { }
+  constructor() {}
 }

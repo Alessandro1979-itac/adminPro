@@ -44,7 +44,7 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     ProgressComponent,
     Grafica1Component,
     PagesComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
   ],
   imports: [
     CommonModule,
@@ -53,7 +53,7 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     SharedModule,
     RouterModule,
     ComponentsModule,
-    PipesModule
-  ]
+    PipesModule,
+  ],
 })
-export class PagesModule { }
+export class PagesModule {}

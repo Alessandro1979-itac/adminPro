@@ -4,30 +4,32 @@ import { environment } from '../../environments/environment';
 const base_url = environment.base_url;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FileUploadService {
-
-  constructor() { }
+  
+  constructor() {}
 
   async actualizarFoto(
     archivo: File,
     tipo: 'usuarios' | 'medicos' | 'hospitales',
     id: string
   ) {
-
     try {
       const url = `${base_url}/upload/${tipo}/${id}`;
       const formData = new FormData();
       formData.append('imagen', archivo);
+
       const resp = await fetch(url, {
         method: 'PUT',
         headers: {
-          'x-token': localStorage.getItem('token') || ''
+          'x-token': localStorage.getItem('token') || '',
         },
-        body: formData
+        body: formData,
       });
+
       const data = await resp.json();
+
       if (data.ok) {
         return data.nombreArchivo;
       } else {
@@ -39,5 +41,4 @@ export class FileUploadService {
       return false;
     }
   }
-
 }
