@@ -13,24 +13,25 @@ import { delay } from 'rxjs/operators';
 @Component({
   selector: 'app-medico',
   templateUrl: './medico.component.html',
-  styles: [],
+  styles: [
+  ]
 })
 export class MedicoComponent implements OnInit {
 
   public medicoForm: FormGroup;
   public hospitales: Hospital[] = [];
+
   public medicoSeleccionado: Medico;
   public hospitalSeleccionado: Hospital;
 
-  constructor(
-    private fb: FormBuilder,
+  constructor(private fb: FormBuilder,
     private hospitalService: HospitalService,
     private medicoService: MedicoService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {}
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+
     this.activatedRoute.params.subscribe(({ id }) => this.cargarMedico(id));
 
     this.medicoForm = this.fb.group({
@@ -39,67 +40,56 @@ export class MedicoComponent implements OnInit {
     });
 
     this.cargarHospitales();
-
-    this.medicoForm.get('hospital').valueChanges.subscribe((hospitalId) => {
-      this.hospitalSeleccionado = this.hospitales.find(
-        (h) => h._id === hospitalId
-      );
-    });
+    this.medicoForm.get('hospital').valueChanges
+      .subscribe(hospitalId => {
+        this.hospitalSeleccionado = this.hospitales.find(h => h._id === hospitalId);
+      })
   }
 
   cargarMedico(id: string) {
+
     if (id === 'nuevo') {
       return;
     }
-
-    this.medicoService
-      .obtenerMedicoPorId(id)
-      .pipe(delay(100))
-      .subscribe((medico) => {
+    this.medicoService.obtenerMedicoPorId(id).pipe(delay(100)).subscribe(
+      medico => {
         if (!medico) {
           return this.router.navigateByUrl(`/dashboard/medicos`);
         }
 
-        const {
-          nombre,
-          hospital: { _id },
-        } = medico;
+        const { nombre, hospital: { _id } } = medico;
         this.medicoSeleccionado = medico;
         this.medicoForm.setValue({ nombre, hospital: _id });
       });
+
   }
 
   cargarHospitales() {
-    this.hospitalService
-      .cargarHospitales()
+    this.hospitalService.cargarHospitales()
       .subscribe((hospitales: Hospital[]) => {
         this.hospitales = hospitales;
-      });
+      })
   }
 
   guardarMedico() {
+
     const { nombre } = this.medicoForm.value;
 
     if (this.medicoSeleccionado) {
-      // actualizar
       const data = {
         ...this.medicoForm.value,
-        _id: this.medicoSeleccionado._id,
-      };
-      this.medicoService.actualizarMedico(data).subscribe((resp) => {
-        Swal.fire(
-          'Actualizado',
-          `${nombre} actualizado correctamente`,
-          'success'
-        );
-      });
+        _id: this.medicoSeleccionado._id
+      }
+      this.medicoService.actualizarMedico(data)
+        .subscribe(resp => {
+          Swal.fire('Atualizado', `${nombre} atualizado corretamente`, 'success');
+        })
     } else {
-      this.medicoService
-        .crearMedico(this.medicoForm.value)
+      this.medicoService.crearMedico(this.medicoForm.value)
         .subscribe((resp: any) => {
-          Swal.fire('Creado', `${nombre} creado correctamente`, 'success');
-          this.router.navigateByUrl(`/dashboard/medico/${resp.medico._id}`);
-        });
+          Swal.fire('Criado', `${nombre} criado corretamente`, 'success');
+          this.router.navigateByUrl(`/dashboard/medico/${resp.medico._id}`)
+        })
     }
   }
 }

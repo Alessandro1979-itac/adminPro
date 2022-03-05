@@ -19,9 +19,8 @@ export class RxjsComponent implements OnDestroy {
   }
 
   retornaIntervalo(): Observable<number> {
-    return interval(100).pipe(
-      // take(10),
-      map((valor) => valor + 1), // 0 => 1
+    return interval(100).pipe(      
+      map((valor) => valor + 1),
       filter((valor) => (valor % 2 === 0 ? true : false))
     );
   }
@@ -40,7 +39,7 @@ export class RxjsComponent implements OnDestroy {
         }
 
         if (i === 2) {
-          observer.error('i llego al valor de 2');
+          observer.error('eu chego no valor de 2');
         }
       }, 1000);
     });

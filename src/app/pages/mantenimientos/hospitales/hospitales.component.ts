@@ -12,19 +12,18 @@ import { ModalImagenService } from '../../../services/modal-imagen.service';
 @Component({
   selector: 'app-hospitales',
   templateUrl: './hospitales.component.html',
-  styles: [],
+  styles: [
+  ]
 })
 export class HospitalesComponent implements OnInit, OnDestroy {
-  
+
   public hospitales: Hospital[] = [];
   public cargando: boolean = true;
   private imgSubs: Subscription;
 
-  constructor(
-    private hospitalService: HospitalService,
+  constructor(private hospitalService: HospitalService,
     private modalImagenService: ModalImagenService,
-    private busquedasService: BusquedasService
-  ) {}
+    private busquedasService: BusquedasService) { }
 
   ngOnDestroy(): void {
     this.imgSubs.unsubscribe();
@@ -35,63 +34,66 @@ export class HospitalesComponent implements OnInit, OnDestroy {
 
     this.imgSubs = this.imgSubs = this.modalImagenService.nuevaImagen
       .pipe(delay(100))
-      .subscribe((img) => this.cargarHospitales());
+      .subscribe(img => this.cargarHospitales());
   }
 
   buscar(termino: string) {
+
     if (termino.length === 0) {
       return this.cargarHospitales();
     }
 
-    this.busquedasService.buscar('hospitales', termino).subscribe((resp) => {
-      this.hospitales = resp;
-    });
+    this.busquedasService.buscar('hospitales', termino)
+      .subscribe(resp => {
+        this.hospitales = resp;
+      });
   }
 
   cargarHospitales() {
+
     this.cargando = true;
-    this.hospitalService.cargarHospitales().subscribe((hospitales) => {
-      this.cargando = false;
-      this.hospitales = hospitales;
-    });
+    this.hospitalService.cargarHospitales()
+      .subscribe(hospitales => {
+        this.cargando = false;
+        this.hospitales = hospitales;
+      })
   }
 
   guardarCambios(hospital: Hospital) {
-    this.hospitalService
-      .actualizarHospital(hospital._id, hospital.nombre)
-      .subscribe((resp) => {
-        Swal.fire('Actualizado', hospital.nombre, 'success');
+
+    this.hospitalService.actualizarHospital(hospital._id, hospital.nombre)
+      .subscribe(resp => {
+        Swal.fire('Atualizado', hospital.nombre, 'success');
       });
   }
 
   eliminarHospital(hospital: Hospital) {
-    this.hospitalService.borrarHospital(hospital._id).subscribe((resp) => {
-      this.cargarHospitales();
-      Swal.fire('Borrado', hospital.nombre, 'success');
-    });
+
+    this.hospitalService.borrarHospital(hospital._id)
+      .subscribe(resp => {
+        this.cargarHospitales();
+        Swal.fire('Excluído', hospital.nombre, 'success');
+      });
   }
 
   async abrirSweetAlert() {
     const { value = '' } = await Swal.fire<string>({
-      title: 'Crear hospital',
-      text: 'Ingrese el nombre del nuevo hospital',
+      title: 'Criar hospital',
+      text: 'Digite o nome do novo hospital',
       input: 'text',
-      inputPlaceholder: 'Nombre del hospital',
+      inputPlaceholder: 'Nome do hospital',
       showCancelButton: true,
     });
 
     if (value.trim().length > 0) {
-      this.hospitalService.crearHospital(value).subscribe((resp: any) => {
-        this.hospitales.push(resp.hospital);
-      });
+      this.hospitalService.crearHospital(value)
+        .subscribe((resp: any) => {
+          this.hospitales.push(resp.hospital)
+        })
     }
   }
 
   abrirModal(hospital: Hospital) {
-    this.modalImagenService.abrirModal(
-      'hospitales',
-      hospital._id,
-      hospital.img
-    );
+    this.modalImagenService.abrirModal('hospitales', hospital._id, hospital.img);
   }
 }

@@ -10,20 +10,20 @@ import { Usuario } from '../../models/usuario.model';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
-  styles: [],
+  styles: [
+  ]
 })
 export class PerfilComponent implements OnInit {
-  
+
   public perfilForm: FormGroup;
   public usuario: Usuario;
   public imagenSubir: File;
   public imgTemp: any = null;
 
-  constructor(
-    private fb: FormBuilder,
+  constructor(private fb: FormBuilder,
     private usuarioService: UsuarioService,
-    private fileUploadService: FileUploadService
-  ) {
+    private fileUploadService: FileUploadService) {
+
     this.usuario = usuarioService.usuario;
   }
 
@@ -35,25 +35,24 @@ export class PerfilComponent implements OnInit {
   }
 
   actualizarPerfil() {
-    this.usuarioService.actualizarPerfil(this.perfilForm.value).subscribe(
-      () => {
+    this.usuarioService.actualizarPerfil(this.perfilForm.value)
+      .subscribe(() => {
         const { nombre, email } = this.perfilForm.value;
         this.usuario.nombre = nombre;
         this.usuario.email = email;
 
-        Swal.fire('Guardado', 'Cambios fueron guardados', 'success');
-      },
-      (err) => {
+        Swal.fire('Guardado', 'As alterações foram salvas', 'success');
+      }, (err) => {
         Swal.fire('Error', err.error.msg, 'error');
-      }
-    );
+      });
   }
+
 
   cambiarImagen(file: File) {
     this.imagenSubir = file;
 
     if (!file) {
-      return (this.imgTemp = null);
+      return this.imgTemp = null;
     }
 
     const reader = new FileReader();
@@ -61,19 +60,19 @@ export class PerfilComponent implements OnInit {
 
     reader.onloadend = () => {
       this.imgTemp = reader.result;
-    };
+    }
   }
 
   subirImagen() {
+
     this.fileUploadService
       .actualizarFoto(this.imagenSubir, 'usuarios', this.usuario.uid)
-      .then((img) => {
+      .then(img => {
         this.usuario.img = img;
-        Swal.fire('Guardado', 'Imagen de usuario actualizada', 'success');
-      })
-      .catch((err) => {
+        Swal.fire('Guardado', 'Imagen de usuario atualizada', 'success');
+      }).catch(err => {
         console.log(err);
-        Swal.fire('Error', 'No se pudo subir la imagen', 'error');
-      });
+        Swal.fire('Error', 'A imagem não pôde ser carregada', 'error');
+      })
   }
 }

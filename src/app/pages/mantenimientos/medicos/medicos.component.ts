@@ -12,22 +12,21 @@ import { ModalImagenService } from '../../../services/modal-imagen.service';
 @Component({
   selector: 'app-medicos',
   templateUrl: './medicos.component.html',
-  styles: [],
+  styles: [
+  ]
 })
 export class MedicosComponent implements OnInit, OnDestroy {
-  
+
   public cargando: boolean = true;
   public medicos: Medico[] = [];
   private imgSubs: Subscription;
 
-  constructor(
-    private medicoService: MedicoService,
+  constructor(private medicoService: MedicoService,
     private modalImagenService: ModalImagenService,
-    private busquedasService: BusquedasService
-  ) {}
+    private busquedasService: BusquedasService) { }
 
   ngOnDestroy(): void {
-    this.imgSubs.unsubscribe();
+    this.imgSubs.unsubscribe()
   }
 
   ngOnInit(): void {
@@ -35,25 +34,28 @@ export class MedicosComponent implements OnInit, OnDestroy {
 
     this.imgSubs = this.imgSubs = this.modalImagenService.nuevaImagen
       .pipe(delay(100))
-      .subscribe((img) => this.cargarMedicos());
+      .subscribe(img => this.cargarMedicos());
   }
 
   cargarMedicos() {
     this.cargando = true;
-    this.medicoService.cargarMedicos().subscribe((medicos) => {
-      this.cargando = false;
-      this.medicos = medicos;
-    });
+    this.medicoService.cargarMedicos()
+      .subscribe(medicos => {
+        this.cargando = false;
+        this.medicos = medicos;
+      });
   }
 
   buscar(termino: string) {
+
     if (termino.length === 0) {
       return this.cargarMedicos();
     }
 
-    this.busquedasService.buscar('medicos', termino).subscribe((resp) => {
-      this.medicos = resp;
-    });
+    this.busquedasService.buscar('medicos', termino)
+      .subscribe(resp => {
+        this.medicos = resp;
+      });
   }
 
   abrirModal(medico: Medico) {
@@ -61,23 +63,27 @@ export class MedicosComponent implements OnInit, OnDestroy {
   }
 
   borrarMedico(medico: Medico) {
+
     Swal.fire({
-      title: '¿Borrar médico?',
-      text: `Esta a punto de borrar a ${medico.nombre}`,
+      title: 'Excluir médico?',
+      text: `Está prestes a excluir ${medico.nombre}`,
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: 'Si, borrarlo',
+      confirmButtonText: 'Sim, excluí lo'
     }).then((result) => {
       if (result.value) {
-        this.medicoService.borrarMedico(medico._id).subscribe((resp) => {
-          this.cargarMedicos();
-          Swal.fire(
-            'Médico borrado',
-            `${medico.nombre} fue eliminado correctamente`,
-            'success'
-          );
-        });
+
+        this.medicoService.borrarMedico(medico._id)
+          .subscribe(resp => {
+
+            this.cargarMedicos();
+            Swal.fire(
+              'Médico excluído',
+              `${medico.nombre} foi excluído com sucesso`,
+              'success'
+            );
+          });
       }
-    });
+    })
   }
 }

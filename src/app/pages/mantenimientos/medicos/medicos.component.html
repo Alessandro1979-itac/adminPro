@@ -5,7 +5,6 @@
 
         <input type="text" class="form-control" placeholder="Buscar médico..." #txtTermino
           (keyup)="buscar( txtTermino.value )" />
-
       </div>
     </div>
   </div>
@@ -13,13 +12,16 @@
 
 <div class="row animated fadeIn fast" *ngIf="cargando">
   <div class="col-12">
+
     <div class="alert alert-info text-center">
-      <h4 class="alert-heading">Cargando</h4>
+      <h4 class="alert-heading">Carregando</h4>
       <i class="fa fa-spin fa-refresh fa-2x"></i>
       <p class="mb-0">Por favor espere</p>
     </div>
+
   </div>
 </div>
+
 
 <div class="row" *ngIf="!cargando">
   <div class="col-12">
@@ -31,7 +33,7 @@
           <div class="col-8">
             <h4 class="card-title">Medicos ({{ medicos.length }})</h4>
             <h6 class="card-subtitle">
-              Medicos registrados en mi aplicación
+              Medicos registrados na minha aplicação
             </h6>
           </div>
 
@@ -39,7 +41,7 @@
             <div class="text-right">
               <a class="btn btn-primary" routerLink="/dashboard/medico/nuevo">
                 <i class="fa fa-hospital-o"></i>
-                Crear médico
+                Criar médico
               </a>
             </div>
           </div>
@@ -50,8 +52,8 @@
             <thead>
               <tr>
                 <th class="w100">Foto</th>
-                <th>Nombre</th>
-                <th class="w100 text-nowrap">Acciones</th>
+                <th>Nome</th>
+                <th class="w100 text-nowrap">Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -75,6 +77,7 @@
                   </a>
                 </td>
               </tr>
+
             </tbody>
           </table>
         </div>

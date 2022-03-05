@@ -3,7 +3,7 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Mi perfil de usuario</h4>
+        <h4 class="card-title">Meu perfil de usuário</h4>
         <h6 class="card-subtitle">Ajustes</h6>
 
         <form class="form p-t-20" [formGroup]="perfilForm" (submit)="actualizarPerfil()">
@@ -28,7 +28,7 @@
           <button type="submit" class="btn btn-success btn-block waves-effect waves-light m-r-10"
             [disabled]="perfilForm.invalid">
             <i class="fa fa-save"></i>
-            Guardar cambios
+            Guardar mudanças
           </button>
         </form>
 
@@ -36,11 +36,12 @@
     </div>
   </div>
 
+
   <div class="col-md-6">
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Avatar</h4>
-        <h6 class="card-subtitle">Imagen del usuario</h6>
+        <h6 class="card-subtitle">Imagen do usuário</h6>
 
         <div class="text-center">
           <img *ngIf="!imgTemp" [src]="usuario.imagenUrl" class="img-avatar">
@@ -55,11 +56,12 @@
         <button type="button" class="btn btn-success btn-block waves-effect waves-light m-r-10"
           [disabled]="!imagenSubir" (click)="subirImagen()">
           <i class="fa fa-save"></i>
-          Cambiar imagen
+          Mudar imagen
         </button>
 
       </div>
     </div>
   </div>
+
 
 </div>

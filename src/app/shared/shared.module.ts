@@ -12,4 +12,4 @@ import { HeaderComponent } from './header/header.component';
   exports: [BreadcrumbsComponent, SidebarComponent, HeaderComponent],
   imports: [CommonModule, RouterModule, FormsModule],
 })
-export class SharedModule {}
+export class SharedModule { }
